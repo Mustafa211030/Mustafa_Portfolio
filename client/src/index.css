@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #080c14;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ── GLOBAL SITE CONTAINER ─────────────────────────────────── */
+.site-container {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+@media (min-width: 640px) {
+  .site-container { padding-left: 40px; padding-right: 40px; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar            { width: 4px; }
+::-webkit-scrollbar-track      { background: #080c14; }
+::-webkit-scrollbar-thumb      { background: #1e3a5f; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover{ background: #2563eb; }
+
+/* ── Selection ── */
+::selection { background: rgba(37,99,235,0.35); color: #fff; }
+
+/* ── Focus ── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.group:hover .animate-marquee { animation-play-state: paused; }
+
+/* ── Typewriter cursor ── */
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%     { opacity:0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px; height: 1em;
+  background: #fff;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 0.9s step-end infinite;
+}
+
+/* ── Pulse dot ── */
+@keyframes pulse-dot {
+  0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(34,197,94,0.4); }
+  50%     { box-shadow:0 0 0 6px rgba(34,197,94,0); }
+}
+.pulse-dot { animation: pulse-dot 2s infinite; }
+
+/* ── No scrollbar ── */
+.no-scrollbar::-webkit-scrollbar { display:none; }
+.no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ── Preloader ── */
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+@keyframes loader-progress { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes loader-glitch {
+  0%,100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+  20%     { clip-path: inset(33% 0 40% 0); transform: translate(-4px, 2px); }
+  40%     { clip-path: inset(60% 0 10% 0); transform: translate(4px, -2px); }
+  60%     { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 1px); }
+  80%     { clip-path: inset(50% 0 20% 0); transform: translate(2px, -1px); }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes scaleX-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Gradient text ── */
+.text-gradient {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — applied when <html> has class "light-mode"
+   ═══════════════════════════════════════════════════════════ */
+
+html.light-mode {
+  --bg-primary:   #f0f4f8;
+  --bg-secondary: #e2e8f0;
+  --bg-card:      #ffffff;
+  --text-primary:   #0f172a;
+  --text-secondary: #1e293b;
+  --text-muted:     #475569;
+  --border-base:    rgba(0,0,0,0.1);
+}
+
+html.light-mode body {
+  background: #f0f4f8;
+  color: #0f172a;
+}
+
+/* ── Hero always stays dark regardless of mode ── */
+#home {
+  background: #080c14 !important;
+}
+
+/* ── Footer always stays dark regardless of mode ── */
+footer {
+  background: #111827 !important;
+}
+
+/* ── Navbar in light mode ── */
+html.light-mode .navbar-fixed-bar {
+  background: rgba(255,255,255,0.92) !important;
+  border-bottom-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Scrolled state navbar */
+html.light-mode .navbar-scrolled {
+  background: rgba(255,255,255,0.92) !important;
+  border-bottom-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Navbar brand text */
+html.light-mode .navbar-brand span:last-child {
+  color: #0f172a !important;
+}
+
+/* Nav link text in light mode */
+html.light-mode .nav-link {
+  color: #475569 !important;
+}
+html.light-mode .nav-link:hover,
+html.light-mode .nav-link-active {
+  color: #0f172a !important;
+}
+html.light-mode .nav-link-active span[class*="absolute"] {
+  background: rgba(0,0,0,0.07) !important;
+}
+
+/* DarkModeToggle inside navbar in light mode */
+html.light-mode [aria-label="Toggle dark/light mode"] {
+  background: rgba(0,0,0,0.06) !important;
+  border-color: rgba(0,0,0,0.12) !important;
+}
+
+/* Mobile header in light mode */
+html.light-mode .mobile-header {
+  background: rgba(255,255,255,0.95) !important;
+  border-bottom-color: rgba(0,0,0,0.1) !important;
+}
+html.light-mode .mobile-menu {
+  background: rgba(255,255,255,0.97) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+html.light-mode .mobile-menu button {
+  color: #334155 !important;
+}
+html.light-mode .mobile-menu button:hover {
+  color: #0f172a !important;
+  background: rgba(0,0,0,0.05) !important;
+}
+
+/* ── Section backgrounds in light mode ── */
+html.light-mode #services,
+html.light-mode #case-studies,
+html.light-mode #testimonials,
+html.light-mode #stats,
+html.light-mode #tech-stack {
+  background: #f0f4f8 !important;
+}
+
+html.light-mode #process {
+  background: #e8eef5 !important;
+}
+
+html.light-mode #pricing {
+  background: #dce5ef !important;
+}
+
+html.light-mode #faq {
+  background: #f0f4f8 !important;
+}
+
+html.light-mode #philosophy {
+  background: #dce5ef !important;
+}
+
+html.light-mode #projects {
+  background: #e8eef5 !important;
+}
+
+html.light-mode #contact {
+  background: #e8eef5 !important;
+}
+
+/* ── Cards & surfaces in light mode ── */
+html.light-mode [class*="bg-white/[0.03]"],
+html.light-mode [class*="bg-white/[0.04]"],
+html.light-mode [class*="bg-white/[0.05]"],
+html.light-mode [class*="bg-white/[0.06]"],
+html.light-mode [class*="bg-white/[0.07]"],
+html.light-mode [class*="bg-white/[0.08]"] {
+  background: rgba(255,255,255,0.75) !important;
+  border-color: rgba(0,0,0,0.09) !important;
+}
+
+/* ── Text overrides in light mode ── */
+html.light-mode .text-white { color: #0f172a !important; }
+
+html.light-mode .text-white\/20,
+html.light-mode .text-white\/22,
+html.light-mode .text-white\/25 {
+  color: #94a3b8 !important;
+}
+
+html.light-mode .text-white\/50,
+html.light-mode .text-white\/52,
+html.light-mode .text-white\/55,
+html.light-mode .text-white\/60,
+html.light-mode .text-white\/62,
+html.light-mode .text-white\/65,
+html.light-mode .text-white\/68,
+html.light-mode .text-white\/70,
+html.light-mode .text-white\/78,
+html.light-mode .text-white\/80,
+html.light-mode .text-white\/85,
+html.light-mode .text-white\/88,
+html.light-mode .text-white\/90 {
+  color: #334155 !important;
+}
+
+html.light-mode .text-gray-300 { color: #475569 !important; }
+html.light-mode .text-gray-400 { color: #4b5563 !important; }
+html.light-mode .text-gray-500 { color: #374151 !important; }
+html.light-mode .text-gray-600 { color: #1f2937 !important; }
+
+/* ── Borders in light mode ── */
+html.light-mode [class*="border-white/"] {
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* ── Dark background sections → light equivalents ── */
+html.light-mode [class*="bg-[#080c14]"] { background: #f0f4f8 !important; }
+html.light-mode [class*="bg-[#0d1525]"] { background: #e8eef5 !important; }
+html.light-mode [class*="bg-[#111827]"] { background: #dce5ef !important; }
+html.light-mode [class*="bg-[#0f2318]"] { background: #f0fdf4 !important; }
+html.light-mode [class*="bg-black/"]    { background: rgba(15,23,42,0.05) !important; }
+
+/* ── Input fields ── */
+html.light-mode input,
+html.light-mode textarea,
+html.light-mode select {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+html.light-mode input::placeholder,
+html.light-mode textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* ── Scrollbar ── */
+html.light-mode::-webkit-scrollbar-track { background: #e8eef5; }
+html.light-mode::-webkit-scrollbar-thumb { background: #94a3b8; }
+html.light-mode::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+/* ── Section headings ── */
+html.light-mode .site-container h2 { color: #0f172a; }
+
+/* ── Marquee strip in light mode ── */
+html.light-mode .marquee-wrap,
+html.light-mode [class*="bg-white border-y"] {
+  background: #e8eef5 !important;
+  border-color: #cbd5e1 !important;
+}
+html.light-mode .marquee-item span { color: #1e293b !important; }
+
+/* ── Tech card glow reduce in light mode ── */
+html.light-mode .group:hover [style*="radial-gradient"] {
+  opacity: 0.06 !important;
+}
+
+/* ── Smooth transitions ── */
+html.light-mode *,
+html.dark-mode * {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.2s ease !important;
+}
